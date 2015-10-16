@@ -54,8 +54,6 @@ namespace HotkeyWin
                 if (hotkeyPointer[i].Register()) WriteLine("Hotkey registered.");
                 else WriteLine("Hotkey failed to register");
             }
-
-            // set up the interface
         }
 
         private void HandleHotkey()
@@ -83,6 +81,19 @@ namespace HotkeyWin
         private void WriteLine(string text)
         {
             textBox_console.Text += text + Environment.NewLine;
+        }
+
+        private void button_toggleConsole_Click(object sender, EventArgs e)
+        {
+            splitContainer1.Panel2Collapsed = (splitContainer1.Panel2Collapsed == false) ? splitContainer1.Panel2Collapsed = true : splitContainer1.Panel2Collapsed = false;
+            
+            
+            this.Width = splitContainer1.Panel1.Width;
+        }
+
+        private void button_exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
