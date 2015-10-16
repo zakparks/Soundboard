@@ -1,0 +1,10 @@
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\HotkeyWin.exe
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\HotkeyWin.pdb
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\bin\Debug\HotkeyWin.exe
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\bin\Debug\HotkeyWin.pdb
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\bin\Debug\HotkeyLib.dll
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\bin\Debug\HotkeyLib.pdb
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\Soundboard.csprojResolveAssemblyReference.cache
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\HotkeyWin.Soundboard.resources
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\HotkeyWin.Properties.Resources.resources
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\Soundboard.csproj.GenerateResource.Cache

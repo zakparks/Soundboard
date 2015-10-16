@@ -1,0 +1,5 @@
+C:\Users\Zak\Documents\Downloads\Hotkeys\Hotkeys\HotkeyLib\bin\Debug\HotkeyLib.dll
+C:\Users\Zak\Documents\Downloads\Hotkeys\Hotkeys\HotkeyLib\bin\Debug\HotkeyLib.pdb
+C:\Users\Zak\Documents\Downloads\Hotkeys\Hotkeys\HotkeyLib\obj\Debug\HotkeyLib.csprojResolveAssemblyReference.cache
+C:\Users\Zak\Documents\Downloads\Hotkeys\Hotkeys\HotkeyLib\obj\Debug\HotkeyLib.dll
+C:\Users\Zak\Documents\Downloads\Hotkeys\Hotkeys\HotkeyLib\obj\Debug\HotkeyLib.pdb
