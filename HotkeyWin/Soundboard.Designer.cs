@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox_console = new System.Windows.Forms.TextBox();
             this.button_setSound1 = new System.Windows.Forms.Button();
             this.button_setSound3 = new System.Windows.Forms.Button();
             this.button_setSound2 = new System.Windows.Forms.Button();
@@ -47,17 +46,8 @@
             this.button_setSound8 = new System.Windows.Forms.Button();
             this.button_setSound9 = new System.Windows.Forms.Button();
             this.button_setSound7 = new System.Windows.Forms.Button();
+            this.textBox_console = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // textBox_console
-            // 
-            this.textBox_console.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox_console.Location = new System.Drawing.Point(394, 12);
-            this.textBox_console.Multiline = true;
-            this.textBox_console.Name = "textBox_console";
-            this.textBox_console.ReadOnly = true;
-            this.textBox_console.Size = new System.Drawing.Size(246, 376);
-            this.textBox_console.TabIndex = 0;
             // 
             // button_setSound1
             // 
@@ -148,7 +138,6 @@
             this.button_setSound5.TabIndex = 10;
             this.button_setSound5.Text = "5";
             this.button_setSound5.UseVisualStyleBackColor = true;
-            this.button_setSound5.Click += new System.EventHandler(this.button4_Click);
             // 
             // button_setSound6
             // 
@@ -222,11 +211,24 @@
             this.button_setSound7.Text = "7";
             this.button_setSound7.UseVisualStyleBackColor = true;
             // 
+            // textBox_console
+            // 
+            this.textBox_console.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox_console.Location = new System.Drawing.Point(391, 12);
+            this.textBox_console.Multiline = true;
+            this.textBox_console.Name = "textBox_console";
+            this.textBox_console.ReadOnly = true;
+            this.textBox_console.Size = new System.Drawing.Size(246, 376);
+            this.textBox_console.TabIndex = 0;
+            // 
             // Soundboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 400);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(660, 428);
+            this.Controls.Add(this.textBox_console);
             this.Controls.Add(this.label_sound9);
             this.Controls.Add(this.label_sound8);
             this.Controls.Add(this.label_sound7);
@@ -245,7 +247,6 @@
             this.Controls.Add(this.button_setSound2);
             this.Controls.Add(this.button_setSound3);
             this.Controls.Add(this.button_setSound1);
-            this.Controls.Add(this.textBox_console);
             this.Name = "Soundboard";
             this.Text = "C# Global Hotkeys";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -257,7 +258,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox_console;
         private System.Windows.Forms.Button button_setSound1;
         private System.Windows.Forms.Button button_setSound3;
         private System.Windows.Forms.Button button_setSound2;
@@ -276,6 +276,7 @@
         private System.Windows.Forms.Button button_setSound8;
         private System.Windows.Forms.Button button_setSound9;
         private System.Windows.Forms.Button button_setSound7;
+        private System.Windows.Forms.TextBox textBox_console;
     }
 }
 

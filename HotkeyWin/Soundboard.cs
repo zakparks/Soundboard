@@ -45,6 +45,19 @@ namespace HotkeyWin
             hotkeyPointer[9] = ghk9;
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // register the keys on load
+            for (int i = 1; i <= 9; i++)
+            {
+                WriteLine("Trying to register CTRL+ALT+" + i);
+                if (hotkeyPointer[i].Register()) WriteLine("Hotkey registered.");
+                else WriteLine("Hotkey failed to register");
+            }
+
+            // set up the interface
+        }
+
         private void HandleHotkey()
         {
             WriteLine("Hotkey pressed!");
@@ -55,17 +68,6 @@ namespace HotkeyWin
             if (m.Msg == Hotkeys.Constants.WM_HOTKEY_MSG_ID)
                 HandleHotkey();
             base.WndProc(ref m);
-        }
-
-        // register the keys on load
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            for (int i = 1; i <= 9; i++)
-            {
-                WriteLine("Trying to register CTRL+ALT+" + i);
-                if (hotkeyPointer[i].Register()) WriteLine("Hotkey registered.");
-                else WriteLine("Hotkey failed to register");
-            }
         }
 
         // unregister the keys when the window is closed
@@ -81,11 +83,6 @@ namespace HotkeyWin
         private void WriteLine(string text)
         {
             textBox_console.Text += text + Environment.NewLine;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
