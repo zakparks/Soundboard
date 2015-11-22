@@ -47,14 +47,8 @@
             this.button_setSound8 = new System.Windows.Forms.Button();
             this.button_setSound9 = new System.Windows.Forms.Button();
             this.button_setSound7 = new System.Windows.Forms.Button();
-            this.textBox_console = new System.Windows.Forms.TextBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button_exit = new System.Windows.Forms.Button();
             this.button_toggleConsole = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_setSound1
@@ -219,63 +213,33 @@
             this.button_setSound7.Text = "7";
             this.button_setSound7.UseVisualStyleBackColor = true;
             // 
-            // textBox_console
-            // 
-            this.textBox_console.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox_console.Location = new System.Drawing.Point(14, 11);
-            this.textBox_console.Multiline = true;
-            this.textBox_console.Name = "textBox_console";
-            this.textBox_console.ReadOnly = true;
-            this.textBox_console.Size = new System.Drawing.Size(246, 404);
-            this.textBox_console.TabIndex = 0;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.button_exit);
-            this.splitContainer1.Panel1.Controls.Add(this.button_toggleConsole);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.textBox_console);
-            this.splitContainer1.Size = new System.Drawing.Size(660, 428);
-            this.splitContainer1.SplitterDistance = 380;
-            this.splitContainer1.TabIndex = 20;
-            // 
             // button_exit
             // 
-            this.button_exit.Location = new System.Drawing.Point(23, 320);
+            this.button_exit.Location = new System.Drawing.Point(23, 304);
             this.button_exit.Name = "button_exit";
             this.button_exit.Size = new System.Drawing.Size(111, 53);
-            this.button_exit.TabIndex = 22;
+            this.button_exit.TabIndex = 24;
             this.button_exit.Text = "Exit";
             this.button_exit.UseVisualStyleBackColor = true;
-            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
             // 
             // button_toggleConsole
             // 
-            this.button_toggleConsole.Location = new System.Drawing.Point(258, 320);
+            this.button_toggleConsole.Location = new System.Drawing.Point(258, 304);
             this.button_toggleConsole.Name = "button_toggleConsole";
             this.button_toggleConsole.Size = new System.Drawing.Size(111, 53);
-            this.button_toggleConsole.TabIndex = 21;
+            this.button_toggleConsole.TabIndex = 23;
             this.button_toggleConsole.Text = "Show Console";
             this.button_toggleConsole.UseVisualStyleBackColor = true;
-            this.button_toggleConsole.Click += new System.EventHandler(this.button_toggleConsole_Click);
+            this.button_toggleConsole.Click += new System.EventHandler(this.button_toggleConsole_Click_1);
             // 
             // Soundboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(660, 428);
+            this.ClientSize = new System.Drawing.Size(394, 428);
+            this.Controls.Add(this.button_exit);
+            this.Controls.Add(this.button_toggleConsole);
             this.Controls.Add(this.label_sound9);
             this.Controls.Add(this.label_sound8);
             this.Controls.Add(this.label_sound7);
@@ -294,7 +258,6 @@
             this.Controls.Add(this.button_setSound2);
             this.Controls.Add(this.button_setSound3);
             this.Controls.Add(this.button_setSound1);
-            this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(380, 467);
@@ -304,11 +267,6 @@
             this.Text = "Global Hotkey Soundboard";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,10 +292,8 @@
         private System.Windows.Forms.Button button_setSound8;
         private System.Windows.Forms.Button button_setSound9;
         private System.Windows.Forms.Button button_setSound7;
-        private System.Windows.Forms.TextBox textBox_console;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button_toggleConsole;
         private System.Windows.Forms.Button button_exit;
+        private System.Windows.Forms.Button button_toggleConsole;
     }
 }
 

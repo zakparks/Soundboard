@@ -8,3 +8,4 @@ D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\Soundboard.
 D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\HotkeyWin.Soundboard.resources
 D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\HotkeyWin.Properties.Resources.resources
 D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\Soundboard.csproj.GenerateResource.Cache
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\HotkeyWin.Console.resources
