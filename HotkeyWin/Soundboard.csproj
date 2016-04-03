@@ -8,7 +8,7 @@
     <ProjectGuid>{C1134226-4C8F-4AF1-BBA8-7D749CE3F817}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HotkeyWin</RootNamespace>
+    <RootNamespace>GlobalHotkey</RootNamespace>
     <AssemblyName>HotkeyWin</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.7.3\lib\net35\NAudio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
@@ -47,24 +51,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Console.cs">
+    <Compile Include="AudioConfig.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="GlobalHotkey.cs" />
+    <Compile Include="GUI\HotkeyConsole.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Console.Designer.cs">
-      <DependentUpon>Console.cs</DependentUpon>
+    <Compile Include="GUI\HotkeyConsole.Designer.cs">
+      <DependentUpon>HotkeyConsole.cs</DependentUpon>
     </Compile>
-    <Compile Include="Soundboard.cs">
+    <Compile Include="GUI\Soundboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Soundboard.Designer.cs">
+    <Compile Include="GUI\Soundboard.Designer.cs">
       <DependentUpon>Soundboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Console.resx">
-      <DependentUpon>Console.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\HotkeyConsole.resx">
+      <DependentUpon>HotkeyConsole.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Soundboard.resx">
+    <EmbeddedResource Include="GUI\Soundboard.resx">
       <DependentUpon>Soundboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -75,7 +82,10 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Resources\ClassDiagram1.cd" />
+    <None Include="Resources\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -87,14 +97,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HotkeyLib\HotkeyLib.csproj">
-      <Project>{09823DA8-C587-4363-95F1-CD99F4D0A678}</Project>
-      <Name>HotkeyLib</Name>
-    </ProjectReference>
+    <Content Include="Resources\SpeakerIcon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="SpeakerIcon.ico" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

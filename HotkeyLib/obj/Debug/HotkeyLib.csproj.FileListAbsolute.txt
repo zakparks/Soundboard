@@ -3,3 +3,8 @@ C:\Users\Zak\Documents\Downloads\Hotkeys\Hotkeys\HotkeyLib\bin\Debug\HotkeyLib.p
 C:\Users\Zak\Documents\Downloads\Hotkeys\Hotkeys\HotkeyLib\obj\Debug\HotkeyLib.csprojResolveAssemblyReference.cache
 C:\Users\Zak\Documents\Downloads\Hotkeys\Hotkeys\HotkeyLib\obj\Debug\HotkeyLib.dll
 C:\Users\Zak\Documents\Downloads\Hotkeys\Hotkeys\HotkeyLib\obj\Debug\HotkeyLib.pdb
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyLib\bin\Debug\HotkeyLib.dll
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyLib\bin\Debug\HotkeyLib.pdb
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyLib\obj\Debug\HotkeyLib.dll
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyLib\obj\Debug\HotkeyLib.pdb
+D:\OneDrive\Documents\Programming\Soundboard\HotkeyLib\obj\Debug\HotkeyLib.csprojResolveAssemblyReference.cache
