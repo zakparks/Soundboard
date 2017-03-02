@@ -3,6 +3,7 @@
     public static class Constants
     {
         //modifiers
+        // https://msdn.microsoft.com/en-us/library/windows/desktop/ms646279(v=vs.85).aspx
         public const int NOMOD = 0x0000;
 
         public const int ALT = 0x0001;

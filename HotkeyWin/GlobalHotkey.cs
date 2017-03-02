@@ -120,7 +120,7 @@ namespace GlobalHotkey
                     //store a copy in AppData and rename it to <keynum>.wav
                     if (File.Exists(Path.Combine(Application.UserAppDataPath, fileNameWithExt)))
                     {
-                        // TODO - if current config file already has this file in it, throw file exists error
+                        // TODO - if current config file already has this audio file in it, throw file exists error
                         appdataAudioPath = Path.Combine(Application.UserAppDataPath, fileNameWithExt);
                     }
                     else

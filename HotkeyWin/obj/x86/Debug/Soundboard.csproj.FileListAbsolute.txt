@@ -9,3 +9,15 @@ D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\obj\x86\Debug\Soundboard.
 D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\bin\Debug\HotkeyWin.pdb
 D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\bin\Debug\NAudio.dll
 D:\OneDrive\Documents\Programming\Soundboard\HotkeyWin\bin\Debug\NAudio.xml
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\bin\Debug\HotkeyWin.exe.config
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\bin\Debug\HotkeyWin.exe
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\bin\Debug\HotkeyWin.pdb
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\bin\Debug\NAudio.dll
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\bin\Debug\NAudio.xml
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\obj\x86\Debug\Soundboard.csprojResolveAssemblyReference.cache
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\obj\x86\Debug\GlobalHotkeyConsole.HotkeyConsole.resources
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\obj\x86\Debug\GlobalHotkey.Soundboard.resources
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\obj\x86\Debug\GlobalHotkey.Properties.Resources.resources
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\obj\x86\Debug\Soundboard.csproj.GenerateResource.Cache
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\obj\x86\Debug\HotkeyWin.exe
+D:\OneDrive\Documents\Programming\Soundboard\Soundboard\HotkeyWin\obj\x86\Debug\HotkeyWin.pdb
