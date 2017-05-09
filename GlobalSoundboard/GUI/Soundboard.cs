@@ -27,7 +27,7 @@ namespace GlobalHotkey
         /// <summary>
         /// Class reference of the output console
         /// </summary>
-        private HotkeyConsole _console;
+        public readonly HotkeyConsole _console;
 
         /// <summary>
         /// Bool to toggle if buttons assign or unassign audio files
@@ -67,7 +67,11 @@ namespace GlobalHotkey
             Hotkeys[8] = ghk8;
             Hotkeys[9] = ghk9;
 
+            // load the config if there is one from a previous session
             AudioConfig.checkLoadConfig();
+
+            // set up or install the Virtual Audio Cable
+            AudioConfig.CheckSetupAudio();
         }
 
         /// <summary>
@@ -197,6 +201,10 @@ namespace GlobalHotkey
         /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // change back the audio devices
+            AudioConfig.ResetAudioDevices();
+
+            // unregister keys
             for (int i = 1; i <= 9; i++)
             {
                 _console.WriteLine("Unregistering CTRL+ALT+" + i);

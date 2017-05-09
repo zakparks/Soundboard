@@ -33,3 +33,15 @@ D:\OneDrive\Documents\Programming\Soundboard\Soundboard\GlobalSoundboard\obj\x86
 D:\OneDrive\Documents\Programming\Soundboard\Soundboard\GlobalSoundboard\obj\x86\Debug\Soundboard.csproj.GenerateResource.Cache
 D:\OneDrive\Documents\Programming\Soundboard\Soundboard\GlobalSoundboard\obj\x86\Debug\HotkeyWin.exe
 D:\OneDrive\Documents\Programming\Soundboard\Soundboard\GlobalSoundboard\obj\x86\Debug\HotkeyWin.pdb
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\bin\Debug\HotkeyWin.exe.config
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\HotkeyWin.exe
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\HotkeyWin.pdb
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\bin\Debug\HotkeyWin.exe
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\bin\Debug\HotkeyWin.pdb
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\bin\Debug\NAudio.dll
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\bin\Debug\NAudio.xml
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\Soundboard.csprojResolveAssemblyReference.cache
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\GlobalHotkeyConsole.HotkeyConsole.resources
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\GlobalHotkey.Soundboard.resources
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\GlobalHotkey.Properties.Resources.resources
+C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\Soundboard.csproj.GenerateResource.Cache

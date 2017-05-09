@@ -99,9 +99,37 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable64_2003.cat" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable64_2003.sys" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable64_vista.cat" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable64_vista.sys" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable64_win7.cat" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable64_win7.sys" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable_2003.cat" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable_2003.sys" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable_vista.cat" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable_vista.sys" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable_win7.cat" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable_win7.sys" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable_xp.cat" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\vbaudio_cable_xp.sys" />
+    <None Include="Resources\VBCABLE_Driver_Pack43\VBCABLE_Driver_Pack43.zip" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\SpeakerIcon.ico" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\pin_in.ico" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\pin_out.ico" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\readme.txt" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\VBCABLE_ControlPanel.exe" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\VBCABLE_Setup.exe" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\VBCABLE_Setup_x64.exe" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\vbMmeCable64_2003.inf" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\vbMmeCable64_vista.inf" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\vbMmeCable64_win7.inf" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\vbMmeCable_2003.inf" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\vbMmeCable_vista.inf" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\vbMmeCable_win7.inf" />
+    <Content Include="Resources\VBCABLE_Driver_Pack43\vbMmeCable_xp.inf" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
