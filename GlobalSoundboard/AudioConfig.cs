@@ -104,13 +104,13 @@ namespace GlobalHotkey
                     if (result == DialogResult.OK)
                     {
                         // install
-                        // TODO - make sure this acutally installs instead of cancelling the installer
                         _console.WriteLine("Launching VAC installer");
                         ProcessStartInfo start = new ProcessStartInfo
                         {
                             FileName = Path.Combine(Environment.CurrentDirectory, Environment.Is64BitOperatingSystem ?
                                 @"../../Resources/VBCABLE_Driver_Pack43/VBCABLE_Setup_x64.exe" :
-                                @"../../Resources/VBCABLE_Driver_Pack43/VBCABLE_Setup.exe")
+                                @"../../Resources/VBCABLE_Driver_Pack43/VBCABLE_Setup.exe"),
+                            Verb = "runas"
                         };
                         int exitCode;
 
@@ -141,7 +141,7 @@ namespace GlobalHotkey
             {
                 _console.WriteLine("VAC installer failed with exception: \n\n" + e.Message);
                 MessageBox.Show(@"The virtual audio cable installation appears to have failed and the Soundboard cannot continue. If you are receiving this message in error, try rebooting your machine before launching the Soundboard again. Or, try manually installing the virtual audio cable from http://bit.ly/1puZds5", @"Error", MessageBoxButtons.OK);
-                Application.Exit(); //TODO - this isn't exiting
+                Environment.Exit(1); 
             }
             
 
@@ -156,9 +156,9 @@ namespace GlobalHotkey
         /// <returns></returns>
         private static bool CheckInstalled()
         {
-            var key = System.Environment.Is64BitOperatingSystem ? 
-                Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall") :
-                Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall");
+            var key = System.Environment.Is64BitOperatingSystem ?
+                Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall") :
+                Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall");
 
             if (key == null)
                 return false;
