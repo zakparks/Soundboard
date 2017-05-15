@@ -37,9 +37,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NAudio.1.7.3\lib\net35\NAudio.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NAudio, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\NAudio-1.8.0-Release\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -116,6 +116,10 @@
     <None Include="Resources\VBCABLE_Driver_Pack43\VBCABLE_Driver_Pack43.zip" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\NAudio-1.8.0-Release\license.txt" />
+    <Content Include="Resources\NAudio-1.8.0-Release\NAudio.dll" />
+    <Content Include="Resources\NAudio-1.8.0-Release\NAudio.xml" />
+    <Content Include="Resources\NAudio-1.8.0-Release\readme.txt" />
     <Content Include="Resources\SpeakerIcon.ico" />
     <Content Include="Resources\VBCABLE_Driver_Pack43\pin_in.ico" />
     <Content Include="Resources\VBCABLE_Driver_Pack43\pin_out.ico" />

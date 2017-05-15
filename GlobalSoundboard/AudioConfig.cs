@@ -103,7 +103,7 @@ namespace GlobalHotkey
                     _console.WriteLine("VAC not installed, promting for installation.");
                     if (result == DialogResult.OK)
                     {
-                        // install
+                        // create a process to launch the installer based on the operating system type
                         _console.WriteLine("Launching VAC installer");
                         ProcessStartInfo start = new ProcessStartInfo
                         {
@@ -114,6 +114,7 @@ namespace GlobalHotkey
                         };
                         int exitCode;
 
+                        // launch the external installer, pausing the soundboard app until the installer exits
                         using (Process proc = Process.Start(start))
                         {
                             proc.WaitForExit();
@@ -124,14 +125,11 @@ namespace GlobalHotkey
                         virtualAudioInstalled = CheckInstalled();
 
                         // failure
-                        if (!virtualAudioInstalled)
-                        {
-                            throw new Exception();
-                        }
+                        if (!virtualAudioInstalled) { throw new Exception(); }
                     }
                     else
                     {
-                        MessageBox.Show(@"No virtual audio cable is installed, the Soundboard cannot continue");
+                        MessageBox.Show(@"The virtual audio cable must be installed, the Soundboard cannot continue.");
                         _console.WriteLine("User aborted installation of VAC, exiting.");
                         Application.Exit();
                     }
@@ -143,7 +141,10 @@ namespace GlobalHotkey
                 MessageBox.Show(@"The virtual audio cable installation appears to have failed and the Soundboard cannot continue. If you are receiving this message in error, try rebooting your machine before launching the Soundboard again. Or, try manually installing the virtual audio cable from http://bit.ly/1puZds5", @"Error", MessageBoxButtons.OK);
                 Environment.Exit(1); 
             }
-            
+
+            // if we get to this point, the VAC is installed or a previous installtion was found
+            _console.WriteLine("VAC installation found, continuing with audio device setup");
+
 
             // set up audio devices
             SetupAudioDevices();
@@ -156,17 +157,21 @@ namespace GlobalHotkey
         /// <returns></returns>
         private static bool CheckInstalled()
         {
-            var key = System.Environment.Is64BitOperatingSystem ?
-                Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall") :
-                Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall");
+            // this registry location appears when installed and disappears when uninstalled.
+            // There are many other registry locations it is referenced in, but the 3rd party installer
+            // doesn't remove them. This is the simplist one to look for
+            var key = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Enum\ROOT\MEDIA");
 
-            if (key == null)
-                return false;
+            if (key == null) return false;
 
+            _console.WriteLine("Searching Registry for VAC installation.");
+
+            // full key that should exist on any valid installation is 
+            // Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\ROOT\MEDIA\0000\DeviceDesc == @oem20.inf,%devicename%;VB-Audio Virtual Cable
             return key.GetSubKeyNames()
                 .Select(keyName => key.OpenSubKey(keyName))
-                .Select(subkey => subkey.GetValue("DisplayName") as string)
-                .Any(displayName => displayName != null && displayName.Contains("VB-Audio Virtual Cable"));
+                .Select(subkey => subkey.GetValue("DeviceDesc") as string)
+                .Any(deviceDesc => deviceDesc != null && deviceDesc.Contains("VB-Audio Virtual Cable"));
         }
 
         /// <summary>
