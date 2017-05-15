@@ -6,25 +6,29 @@ using System.Windows.Forms;
 using GlobalHotkeyConsole;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.Collections.Generic;
+using NAudio.Wave;
 
 namespace GlobalHotkey
 {
-    public class AudioConfig
+    public static class AudioConfig
     {
         /// <summary>
         /// XML that stores the key to audio file associations
         /// </summary>
-        public static XDocument _config;
+        private static XDocument _config;
 
         /// <summary>
         /// Class reference of the output console
         /// </summary>
         public static readonly HotkeyConsole _console = HotkeyConsole.GetInstance();
 
+        private static List<NAudio.Wave.WaveInCapabilities> _initialSources = new List<NAudio.Wave.WaveInCapabilities>(); 
+
         /// <summary>
         /// Writes audio assignments to the config file for future use
         /// </summary>
-        public static void updateAudioConfig(int keyId, string fileNameWithExt)
+        public static void UpdateAudioConfig(int keyId, string fileNameWithExt)
         {
             XElement x = _config.Element("Soundboard").Elements("key").Single(key => (int)key.FirstAttribute == keyId);
             x.Value = fileNameWithExt;
@@ -34,7 +38,7 @@ namespace GlobalHotkey
         /// <summary>
         /// Create a new audio config and initialize the xml structure
         /// </summary>
-        public static void createAudioConfig()
+        private static void CreateAudioConfig()
         {
             _config = new XDocument(
                 new XComment("Auto-generated configuration for Global Soundboard."),
@@ -57,7 +61,7 @@ namespace GlobalHotkey
         /// <summary>
         /// Load the existing configuration file and assign the saved values
         /// </summary>
-        public static void loadConfig()
+        public static void LoadConfig()
         {
             foreach (XElement x in _config.Root.Nodes())
             {
@@ -73,16 +77,16 @@ namespace GlobalHotkey
         /// <summary>
         /// If the config file exists, load it, if not make a new one
         /// </summary>
-        public static void checkLoadConfig()
+        public static void CheckLoadConfig()
         {
             if (File.Exists(Path.Combine(Application.UserAppDataPath, "audioConfig.xml")))
             {
                 _config = XDocument.Load(Path.Combine(Application.UserAppDataPath, "audioConfig.xml"));
-                loadConfig();
+                LoadConfig();
             }
             else
             {
-                createAudioConfig();
+                CreateAudioConfig();
             }
         }
 
@@ -91,101 +95,36 @@ namespace GlobalHotkey
         /// </summary>
         public static void CheckSetupAudio()
         {
-            // check if the VAC is installed
-            bool virtualAudioInstalled = CheckInstalled();
-
-            try
+            // get all the sound in devices, (microphones, etc)
+            List<WaveInCapabilities> inputSources = new List<WaveInCapabilities>();
+            for (int i = 0; i < WaveIn.DeviceCount; i++)
             {
-                // install it if not
-                if (!virtualAudioInstalled)
-                {
-                    var result = MessageBox.Show(@"A virtual audio cable must be installed to continue. Please follow the prompts on the following screens.", @"Install Virtual Audio", MessageBoxButtons.OKCancel);
-                    _console.WriteLine("VAC not installed, promting for installation.");
-                    if (result == DialogResult.OK)
-                    {
-                        // create a process to launch the installer based on the operating system type
-                        _console.WriteLine("Launching VAC installer");
-                        ProcessStartInfo start = new ProcessStartInfo
-                        {
-                            FileName = Path.Combine(Environment.CurrentDirectory, Environment.Is64BitOperatingSystem ?
-                                @"../../Resources/VBCABLE_Driver_Pack43/VBCABLE_Setup_x64.exe" :
-                                @"../../Resources/VBCABLE_Driver_Pack43/VBCABLE_Setup.exe"),
-                            Verb = "runas"
-                        };
-                        int exitCode;
-
-                        // launch the external installer, pausing the soundboard app until the installer exits
-                        using (Process proc = Process.Start(start))
-                        {
-                            proc.WaitForExit();
-                            exitCode = proc.ExitCode;
-                        }
-
-                        // double check installation was sucessfull 
-                        virtualAudioInstalled = CheckInstalled();
-
-                        // failure
-                        if (!virtualAudioInstalled) { throw new Exception(); }
-                    }
-                    else
-                    {
-                        MessageBox.Show(@"The virtual audio cable must be installed, the Soundboard cannot continue.");
-                        _console.WriteLine("User aborted installation of VAC, exiting.");
-                        Application.Exit();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                _console.WriteLine("VAC installer failed with exception: \n\n" + e.Message);
-                MessageBox.Show(@"The virtual audio cable installation appears to have failed and the Soundboard cannot continue. If you are receiving this message in error, try rebooting your machine before launching the Soundboard again. Or, try manually installing the virtual audio cable from http://bit.ly/1puZds5", @"Error", MessageBoxButtons.OK);
-                Environment.Exit(1); 
+                inputSources.Add(WaveIn.GetCapabilities(i));
             }
 
-            // if we get to this point, the VAC is installed or a previous installtion was found
-            _console.WriteLine("VAC installation found, continuing with audio device setup");
+            // get all the sound out devices, (speakers and headphones, etc)
+            List<WaveOutCapabilities> outputSources = new List<WaveOutCapabilities>();
+            for (int i = 0; i < WaveOut.DeviceCount; i++)
+            {
+                outputSources.Add(WaveOut.GetCapabilities(i));
+            }
 
+            // save initial audio devices. On exit, the Soundboard will reset back to these
+            SaveInitialDevices(inputSources, outputSources);
 
-            // set up audio devices
-            SetupAudioDevices();
-            
+            // set the correct input and output devices for this program
+
         }
+
 
         /// <summary>
-        /// Checks the registry to see if the provided VAC is installed
+        /// save initial audio devices. On exit, the Soundboard will reset back to these
         /// </summary>
-        /// <returns></returns>
-        private static bool CheckInstalled()
+        private static void SaveInitialDevices(List<WaveInCapabilities> inputs, List<WaveOutCapabilities> outputs)
         {
-            // this registry location appears when installed and disappears when uninstalled.
-            // There are many other registry locations it is referenced in, but the 3rd party installer
-            // doesn't remove them. This is the simplist one to look for
-            var key = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Enum\ROOT\MEDIA");
-
-            if (key == null) return false;
-
-            _console.WriteLine("Searching Registry for VAC installation.");
-
-            // full key that should exist on any valid installation is 
-            // Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\ROOT\MEDIA\0000\DeviceDesc == @oem20.inf,%devicename%;VB-Audio Virtual Cable
-            return key.GetSubKeyNames()
-                .Select(keyName => key.OpenSubKey(keyName))
-                .Select(subkey => subkey.GetValue("DeviceDesc") as string)
-                .Any(deviceDesc => deviceDesc != null && deviceDesc.Contains("VB-Audio Virtual Cable"));
+            // TODO - do this later if everything else works
         }
-
-        /// <summary>
-        /// Set the default output and input device to CABLE input, to allow virtual audio cable mixing
-        /// </summary>
-        private static void SetupAudioDevices()
-        {
-            // save current input/output devices for later
-            // set default output device CABLE Input
-            // change default input device to match
-            
-
-        }
-
+       
         /// <summary>
         /// Takes the audio devices that were in use before launch and resets the system to use those
         /// </summary>

@@ -68,9 +68,9 @@ namespace GlobalHotkey
             Hotkeys[9] = ghk9;
 
             // load the config if there is one from a previous session
-            AudioConfig.checkLoadConfig();
+            AudioConfig.CheckLoadConfig();
 
-            // set up or install the Virtual Audio Cable
+            // set up NAudio devices
             AudioConfig.CheckSetupAudio();
         }
 
