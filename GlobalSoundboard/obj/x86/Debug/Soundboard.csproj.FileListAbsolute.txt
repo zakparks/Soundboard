@@ -45,3 +45,15 @@ C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\Globa
 C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\GlobalHotkey.Soundboard.resources
 C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\GlobalHotkey.Properties.Resources.resources
 C:\Users\zparks\Documents\GitHub\Soundboard\GlobalSoundboard\obj\x86\Debug\Soundboard.csproj.GenerateResource.Cache
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\bin\Debug\HotkeyWin.exe.config
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\bin\Debug\HotkeyWin.exe
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\bin\Debug\HotkeyWin.pdb
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\bin\Debug\NAudio.dll
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\bin\Debug\NAudio.xml
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\obj\x86\Debug\Soundboard.csprojResolveAssemblyReference.cache
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\obj\x86\Debug\GlobalHotkeyConsole.HotkeyConsole.resources
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\obj\x86\Debug\GlobalHotkey.Soundboard.resources
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\obj\x86\Debug\GlobalHotkey.Properties.Resources.resources
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\obj\x86\Debug\Soundboard.csproj.GenerateResource.Cache
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\obj\x86\Debug\HotkeyWin.exe
+C:\Users\Zak\Source\Repos\Soundboard\GlobalSoundboard\obj\x86\Debug\HotkeyWin.pdb

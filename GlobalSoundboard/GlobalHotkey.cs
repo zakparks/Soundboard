@@ -36,6 +36,10 @@ namespace GlobalHotkey
         /// </summary>
         private string _audioPath;
 
+        private NAudio.Wave.WaveFileReader AudioFilePlaying;
+
+        private NAudio.Wave.DirectSoundOut LocalOutput = new NAudio.Wave.DirectSoundOut();
+
         /// <summary>
         /// Class reference of the output console
         /// </summary>
@@ -59,7 +63,6 @@ namespace GlobalHotkey
         /// <summary>
         /// Checks if the given _key already has an audio file associated with it
         /// </summary>
-        /// <param name="ghk"></param>
         /// <returns>True if there is assigned audio, false otherwise</returns>
         private bool HasAudio()
         {
@@ -72,23 +75,29 @@ namespace GlobalHotkey
         /// <param name="_keyId">A number 1 - 9 denoting which _key was pressed</param>
         public void PlayAudio(int keyId)
         {
+            // stop playback if the key is pressed while already playing its sound
+            if (LocalOutput != null && LocalOutput.PlaybackState == NAudio.Wave.PlaybackState.Playing)
+            {
+                LocalOutput.Stop();
+                return;
+            }
+
             if (HasAudio())
             {
-                // play the audio locally, maybe using System.Media.SoundPlayer
-                // pipe the audio into the microphone
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer { SoundLocation = _audioPath };
-                player.Load();
-                player.Play();
+                // play the audio locally
+                AudioFilePlaying = new NAudio.Wave.WaveFileReader(_audioPath);
+                LocalOutput = new NAudio.Wave.DirectSoundOut();
+                LocalOutput.Init(new NAudio.Wave.WaveChannel32(AudioFilePlaying));
+                LocalOutput.Play();
                 _console.WriteLine("Audio played locally");
+
+                // pipe the audio into the microphone
+
             }
             else
             {
                 _console.WriteLine("Hotkey " + keyId + " has no audio assigned.");
                 assignAudio(keyId);
-                // get an audio file using OpenFileDialog
-                // copy audio file to AppData
-                // assign new path to this._audioPath
-                // add this new mapping to a config file
                 // rename the appropriate label to the audio file name
             }
         }

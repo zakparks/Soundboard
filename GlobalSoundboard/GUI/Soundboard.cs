@@ -20,6 +20,11 @@ namespace GlobalHotkey
         public static GlobalHotkey[] Hotkeys = new GlobalHotkey[10];
 
         /// <summary>
+        /// Device to send audio to
+        /// </summary>
+        public int OutputDevice;
+
+        /// <summary>
         /// Tracks the current hotkey by ID 1-9
         /// </summary>
         private static int _keyId;
@@ -40,6 +45,17 @@ namespace GlobalHotkey
         public Soundboard()
         {
             InitializeComponent();
+
+            buttonLabels[0] = null; // i don't want to deal with zero based numbering for readability's sake
+            buttonLabels[1] = label_sound1;
+            buttonLabels[2] = label_sound2;
+            buttonLabels[3] = label_sound3;
+            buttonLabels[4] = label_sound4;
+            buttonLabels[5] = label_sound5;
+            buttonLabels[6] = label_sound6;
+            buttonLabels[7] = label_sound7;
+            buttonLabels[8] = label_sound8;
+            buttonLabels[9] = label_sound9;
 
             this._console = HotkeyConsole.GetInstance();
 
@@ -70,8 +86,8 @@ namespace GlobalHotkey
             // load the config if there is one from a previous session
             AudioConfig.CheckLoadConfig();
 
-            // set up NAudio devices
-            AudioConfig.CheckSetupAudio();
+            // set up NAudio devices. 
+            AudioConfig.GetAudioDevices();
         }
 
         /// <summary>
@@ -90,8 +106,8 @@ namespace GlobalHotkey
                 else _console.WriteLine("Hotkey failed to register :(");
             }
 
-            // load the config file and assign any keys with existing audio
-
+            // load the devices to the interface. 
+            RefreshDevciesList();
         }
 
         /// <summary>
@@ -100,68 +116,76 @@ namespace GlobalHotkey
         /// <param name="m">Message with keypress paramaters</param>
         private void HandleHotkey(Message m)
         {
-            string keyPressed = m.LParam.ToString();
-
-            switch (keyPressed)
+            if (AudioDeviceSelected() == true)
             {
-                case Constants.HK_1:
-                    _console.WriteLine("Hotkey 1 pressed!");
-                    _keyId = 1;
-                    Hotkeys[_keyId].PlayAudio(_keyId);
-                    break;
+                string keyPressed = m.LParam.ToString();
 
-                case Constants.HK_2:
-                    _console.WriteLine("Hotkey 2 pressed!");
-                    _keyId = 2;
-                    Hotkeys[_keyId].PlayAudio(_keyId);
-                    break;
+                switch (keyPressed)
+                {
+                    case Constants.HK_1:
+                        _console.WriteLine("Hotkey 1 pressed!");
+                        _keyId = 1;
+                        Hotkeys[_keyId].PlayAudio(_keyId);
+                        break;
 
-                case Constants.HK_3:
-                    _console.WriteLine("Hotkey 3 pressed!");
-                    _keyId = 3;
-                    Hotkeys[_keyId].PlayAudio(_keyId);
-                    break;
+                    case Constants.HK_2:
+                        _console.WriteLine("Hotkey 2 pressed!");
+                        _keyId = 2;
+                        Hotkeys[_keyId].PlayAudio(_keyId);
+                        break;
 
-                case Constants.HK_4:
-                    _console.WriteLine("Hotkey 4 pressed!");
-                    _keyId = 4;
-                    Hotkeys[_keyId].PlayAudio(_keyId);
-                    break;
+                    case Constants.HK_3:
+                        _console.WriteLine("Hotkey 3 pressed!");
+                        _keyId = 3;
+                        Hotkeys[_keyId].PlayAudio(_keyId);
+                        break;
 
-                case Constants.HK_5:
-                    _console.WriteLine("Hotkey 5 pressed!");
-                    _keyId = 5;
-                    Hotkeys[_keyId].PlayAudio(_keyId);
-                    break;
+                    case Constants.HK_4:
+                        _console.WriteLine("Hotkey 4 pressed!");
+                        _keyId = 4;
+                        Hotkeys[_keyId].PlayAudio(_keyId);
+                        break;
 
-                case Constants.HK_6:
-                    _console.WriteLine("Hotkey 6 pressed!");
-                    _keyId = 6;
-                    Hotkeys[_keyId].PlayAudio(_keyId);
-                    break;
+                    case Constants.HK_5:
+                        _console.WriteLine("Hotkey 5 pressed!");
+                        _keyId = 5;
+                        Hotkeys[_keyId].PlayAudio(_keyId);
+                        break;
 
-                case Constants.HK_7:
-                    _console.WriteLine("Hotkey 7 pressed!");
-                    _keyId = 7;
-                    Hotkeys[_keyId].PlayAudio(_keyId);
-                    break;
+                    case Constants.HK_6:
+                        _console.WriteLine("Hotkey 6 pressed!");
+                        _keyId = 6;
+                        Hotkeys[_keyId].PlayAudio(_keyId);
+                        break;
 
-                case Constants.HK_8:
-                    _console.WriteLine("Hotkey 8 pressed!");
-                    _keyId = 8;
-                    Hotkeys[_keyId].PlayAudio(_keyId);
-                    break;
+                    case Constants.HK_7:
+                        _console.WriteLine("Hotkey 7 pressed!");
+                        _keyId = 7;
+                        Hotkeys[_keyId].PlayAudio(_keyId);
+                        break;
 
-                case Constants.HK_9:
-                    _console.WriteLine("Hotkey 9 pressed!");
-                    _keyId = 9;
-                    Hotkeys[_keyId].PlayAudio(_keyId);
-                    break;
+                    case Constants.HK_8:
+                        _console.WriteLine("Hotkey 8 pressed!");
+                        _keyId = 8;
+                        Hotkeys[_keyId].PlayAudio(_keyId);
+                        break;
 
-                default:
-                    break;
+                    case Constants.HK_9:
+                        _console.WriteLine("Hotkey 9 pressed!");
+                        _keyId = 9;
+                        Hotkeys[_keyId].PlayAudio(_keyId);
+                        break;
+
+                    default:
+                        break;
+                }
+                _keyId = 0;
             }
-            _keyId = 0;
+            else
+            {
+                MessageBox.Show("No device is selected on the right to output audio to. Please select the device you wish to send audio to.", "No Device Selected", MessageBoxButtons.OK);
+                _console.WriteLine("No device selected to play audio to");
+            }
         }
 
         /// <summary>
@@ -173,6 +197,36 @@ namespace GlobalHotkey
             if (m.Msg == Constants.WM_HOTKEY_MSG_ID)
                 HandleHotkey(m);
             base.WndProc(ref m);
+        }
+
+        /// <summary>
+        /// Refresh the list of devices in the interface
+        /// </summary>
+        private void RefreshDevciesList()
+        {
+            // clear what is in there
+            sourceList.Items.Clear();
+
+            foreach (var source in AudioConfig.InputSources)
+            {
+                ListViewItem i = new ListViewItem(source.ProductName);
+                i.SubItems.Add(new ListViewItem.ListViewSubItem(i, source.Channels.ToString()));
+                sourceList.Items.Add(i);
+            }
+        }
+
+        /// <summary>
+        /// Determine if the user selected and output device, and save it if they did
+        /// </summary>
+        /// <returns></returns>
+        public bool AudioDeviceSelected()
+        {
+            if (sourceList.SelectedItems.Count == 1)
+            {
+                OutputDevice = sourceList.SelectedItems[0].Index;
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -201,9 +255,6 @@ namespace GlobalHotkey
         /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // change back the audio devices
-            AudioConfig.ResetAudioDevices();
-
             // unregister keys
             for (int i = 1; i <= 9; i++)
             {
@@ -325,5 +376,16 @@ namespace GlobalHotkey
         }
         # endregion
 
+        /// <summary>
+        /// Refresh the source input list on the interface
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_RefreshSources_Click(object sender, EventArgs e)
+        {
+            // update devcices in memory
+            AudioConfig.GetAudioDevices();
+            RefreshDevciesList();
+        }
     }
 }

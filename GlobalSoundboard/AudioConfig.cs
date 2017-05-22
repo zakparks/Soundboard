@@ -23,7 +23,15 @@ namespace GlobalHotkey
         /// </summary>
         public static readonly HotkeyConsole _console = HotkeyConsole.GetInstance();
 
-        private static List<NAudio.Wave.WaveInCapabilities> _initialSources = new List<NAudio.Wave.WaveInCapabilities>(); 
+        /// <summary>
+        /// All of the machine's installed input devices (microphones, etc)
+        /// </summary>
+        public static List<WaveInCapabilities> InputSources = new List<WaveInCapabilities>();
+
+        /// <summary>
+        /// All of the machine's installed output devices (speakers, etc)
+        /// </summary>
+        public static List<WaveOutCapabilities> OutputSources = new List<WaveOutCapabilities>();
 
         /// <summary>
         /// Writes audio assignments to the config file for future use
@@ -67,7 +75,7 @@ namespace GlobalHotkey
             {
                 if (x.Value != string.Empty)
                 {
-                    int curKey = System.Convert.ToInt32(x.FirstAttribute.Value);
+                    int curKey = Convert.ToInt32(x.FirstAttribute.Value);
                     string audioFilePath = x.Value;
                     Soundboard.buttonLabels[curKey].Text = Soundboard.Hotkeys[curKey].assignAudio(curKey, audioFilePath);
                 }
@@ -93,44 +101,19 @@ namespace GlobalHotkey
         /// <summary>
         /// Check if the appropriate audio devices are installed, enabled, and set up for use
         /// </summary>
-        public static void CheckSetupAudio()
+        public static void GetAudioDevices()
         {
             // get all the sound in devices, (microphones, etc)
-            List<WaveInCapabilities> inputSources = new List<WaveInCapabilities>();
             for (int i = 0; i < WaveIn.DeviceCount; i++)
             {
-                inputSources.Add(WaveIn.GetCapabilities(i));
+                InputSources.Add(WaveIn.GetCapabilities(i));
             }
 
             // get all the sound out devices, (speakers and headphones, etc)
-            List<WaveOutCapabilities> outputSources = new List<WaveOutCapabilities>();
             for (int i = 0; i < WaveOut.DeviceCount; i++)
             {
-                outputSources.Add(WaveOut.GetCapabilities(i));
-            }
-
-            // save initial audio devices. On exit, the Soundboard will reset back to these
-            SaveInitialDevices(inputSources, outputSources);
-
-            // set the correct input and output devices for this program
-
-        }
-
-
-        /// <summary>
-        /// save initial audio devices. On exit, the Soundboard will reset back to these
-        /// </summary>
-        private static void SaveInitialDevices(List<WaveInCapabilities> inputs, List<WaveOutCapabilities> outputs)
-        {
-            // TODO - do this later if everything else works
-        }
-       
-        /// <summary>
-        /// Takes the audio devices that were in use before launch and resets the system to use those
-        /// </summary>
-        public static void ResetAudioDevices()
-        {
-            // take stored input/output devices and reset the sytem to those
+                OutputSources.Add(WaveOut.GetCapabilities(i));
+            }             
         }
     }
 }
